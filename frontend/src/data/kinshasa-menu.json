@@ -1,0 +1,227 @@
+{
+  "restaurant_id": "1",
+  "categories": [
+    { "id": "congolais", "name": "Plats congolais" },
+    { "id": "street-food", "name": "Shawarma & fast-food" },
+    { "id": "sucres", "name": "Boissons sucrées" },
+    { "id": "bieres", "name": "Bières & cidres" }
+  ],
+  "items": [
+    {
+      "id": "riz-haricots",
+      "category": "congolais",
+      "name": "Riz aux haricots",
+      "description": "Riz blanc et haricots mijotés à la tomate, oignon et épices douces.",
+      "price": "2500.00",
+      "photo": "rice-beans",
+      "photo_note": "Photo d’illustration : riz et haricots, présentation différente selon la cuisine."
+    },
+    {
+      "id": "fufu-fumbwa-poisson",
+      "category": "congolais",
+      "name": "Fufu, fumbwa & poisson",
+      "description": "Fufu, feuilles de fumbwa à la sauce d’arachide et poisson. Une assiette généreuse aux saveurs du Congo.",
+      "price": "6000.00",
+      "photo": "fumbwa",
+      "photo_note": "Photo d’illustration du fumbwa ; le fufu et le poisson ne sont pas représentés."
+    },
+    {
+      "id": "fufu-pondu-poisson",
+      "category": "congolais",
+      "name": "Fufu, pondu & poisson",
+      "description": "Fufu moelleux, feuilles de manioc mijotées et poisson, avec le piment servi à part.",
+      "price": "5000.00",
+      "photo": "fufu-fish",
+      "photo_note": "Photo d’illustration d’un assortiment de foufou, saka-saka et poisson."
+    },
+    {
+      "id": "pondu-chikwangue",
+      "category": "congolais",
+      "name": "Pondu & chikwangue",
+      "description": "Pondu mijoté accompagné de chikwangue : une pause simple et savoureuse.",
+      "price": "3000.00",
+      "photo": "moambe",
+      "photo_note": "Photo d’illustration d’un assortiment moambe, pondu et chikwangue ; la portion servie diffère."
+    },
+    {
+      "id": "madesu-chikwangue",
+      "category": "congolais",
+      "name": "Madesu & chikwangue",
+      "description": "Haricots fondants en sauce tomate, accompagnés de chikwangue.",
+      "price": "2500.00",
+      "photo": "chikwangue",
+      "photo_note": "Photo d’illustration de chikwangue ; les haricots ne sont pas représentés."
+    },
+    {
+      "id": "makemba",
+      "category": "congolais",
+      "name": "Assiette de makemba",
+      "description": "Une portion de bananes plantains frites, dorées et tendres à cœur.",
+      "price": "2000.00",
+      "photo": "plantain",
+      "photo_note": "Photo d’illustration de plantains frits."
+    },
+    {
+      "id": "moambe",
+      "category": "congolais",
+      "name": "Poulet à la moambe",
+      "description": "Une portion de poulet en sauce aux noix de palme, accompagnée de riz.",
+      "price": "6000.00",
+      "photo": "moambe",
+      "photo_note": "Photo d’illustration de moambe ; les accompagnements photographiés diffèrent de la formule au riz."
+    },
+    {
+      "id": "poisson-braise",
+      "category": "congolais",
+      "name": "Poisson à la braise",
+      "description": "Une portion de poisson grillé, citron, oignons et chikwangue. Piment à part.",
+      "price": "6000.00",
+      "photo": "fish",
+      "photo_note": "Photo d’illustration de poisson grillé ; portion et accompagnement à confirmer."
+    },
+    {
+      "id": "poulet-braise",
+      "category": "congolais",
+      "name": "Poulet braisé & makemba",
+      "description": "Une portion de poulet mariné et grillé, servie avec des plantains dorés.",
+      "price": "6000.00",
+      "photo": "chicken",
+      "photo_note": "Photo d’illustration du poulet grillé ; les makemba ne sont pas représentés."
+    },
+    {
+      "id": "shawarma",
+      "category": "street-food",
+      "name": "Shawarma au poulet",
+      "description": "Galette garnie de poulet, crudités et sauce maison, roulée pour une pause gourmande.",
+      "price": "6000.00",
+      "photo": "shawarma",
+      "photo_note": "Photo d’illustration de shawarma ; la garniture exacte peut différer."
+    },
+    {
+      "id": "tacos",
+      "category": "street-food",
+      "name": "Tacos au poulet",
+      "description": "Galette grillée, poulet, frites et sauce fromagère : fondant et croustillant à la fois.",
+      "price": "8000.00",
+      "photo": "tacos",
+      "photo_note": "Photo d’illustration de tacos français ; garniture à confirmer auprès du restaurant."
+    },
+    {
+      "id": "burger",
+      "category": "street-food",
+      "name": "Burger maison",
+      "description": "Pain moelleux, steak de bœuf, salade, tomate et sauce maison.",
+      "price": "8000.00",
+      "photo": "burger",
+      "photo_note": "Photo d’illustration de burger ; garniture différente selon la préparation."
+    },
+    {
+      "id": "double-burger",
+      "category": "street-food",
+      "name": "Double burger fromage",
+      "description": "Deux steaks de bœuf, fromage fondant, salade et sauce maison.",
+      "price": "12000.00",
+      "photo": "burger",
+      "photo_note": "Photo d’illustration d’un burger simple ; le double steak n’est pas représenté."
+    },
+    {
+      "id": "pizza-fromage",
+      "category": "street-food",
+      "name": "Pizza au fromage",
+      "description": "Sauce tomate, fromage fondant et herbes sur une pâte dorée.",
+      "price": "12000.00",
+      "photo": "pizza",
+      "photo_note": "Photo d’illustration de pizza ; forme et garniture selon la préparation."
+    },
+    {
+      "id": "pizza-poulet",
+      "category": "street-food",
+      "name": "Pizza au poulet",
+      "description": "Sauce tomate, morceaux de poulet, fromage et oignons.",
+      "price": "16000.00",
+      "photo": "pizza",
+      "photo_note": "Photo d’illustration de pizza au fromage ; le poulet n’est pas représenté."
+    },
+    {
+      "id": "sandwich",
+      "category": "street-food",
+      "name": "Sandwich au poulet",
+      "description": "Pain garni de poulet, crudités croquantes et sauce maison.",
+      "price": "6000.00",
+      "photo": "sandwich",
+      "photo_note": "Photo d’illustration de sandwich au poulet."
+    },
+    {
+      "id": "coca-cola",
+      "category": "sucres",
+      "name": "Coca-Cola",
+      "description": "Boisson gazeuse au cola, servie fraîche. Format disponible à confirmer au restaurant.",
+      "price": "1500.00",
+      "photo": "coca-cola",
+      "photo_note": "Photo d’illustration du produit ; format et emballage peuvent varier."
+    },
+    {
+      "id": "fanta",
+      "category": "sucres",
+      "name": "Fanta orange",
+      "description": "Boisson gazeuse à l’orange, servie fraîche. Format disponible à confirmer au restaurant.",
+      "price": "1500.00",
+      "photo": "fanta",
+      "photo_note": "Photo d’illustration du produit ; format et emballage peuvent varier."
+    },
+    {
+      "id": "sprite",
+      "category": "sucres",
+      "name": "Sprite",
+      "description": "Boisson gazeuse citron-citron vert, servie fraîche. Format disponible à confirmer au restaurant.",
+      "price": "1500.00",
+      "photo": "sprite",
+      "photo_note": "Photo d’illustration du produit ; format et emballage peuvent varier."
+    },
+    {
+      "id": "vitalo",
+      "category": "sucres",
+      "name": "Vital’o grenadine",
+      "description": "Boisson sucrée à la grenadine, servie fraîche. Format disponible à confirmer au restaurant.",
+      "price": "1500.00",
+      "photo": "grenadine",
+      "photo_note": "Illustration générique de grenadine : cette photo ne représente pas une bouteille Vital’o."
+    },
+    {
+      "id": "bavaria",
+      "category": "bieres",
+      "name": "Bavaria",
+      "description": "Bière servie fraîche. Version alcoolisée retenue pour cette carte ; format à confirmer.",
+      "price": "4000.00",
+      "photo": "bavaria",
+      "photo_note": "Photo d’illustration du produit ; format et emballage peuvent varier."
+    },
+    {
+      "id": "castel",
+      "category": "bieres",
+      "name": "Castel Beer",
+      "description": "Bière blonde servie fraîche. Format disponible à confirmer au restaurant.",
+      "price": "4000.00",
+      "photo": "castel",
+      "photo_note": "Photo d’illustration du produit ; format et emballage peuvent varier."
+    },
+    {
+      "id": "heineken",
+      "category": "bieres",
+      "name": "Heineken",
+      "description": "Bière blonde servie fraîche. Format disponible à confirmer au restaurant.",
+      "price": "4000.00",
+      "photo": "heineken",
+      "photo_note": "Photo d’illustration du produit ; format et emballage peuvent varier."
+    },
+    {
+      "id": "savanna",
+      "category": "bieres",
+      "name": "Savanna Dry",
+      "description": "Cidre de pomme alcoolisé, servi frais. Classé avec les boissons alcoolisées, au tarif demandé.",
+      "price": "4000.00",
+      "photo": "savanna",
+      "photo_note": "Photo d’illustration du produit ; format et emballage peuvent varier."
+    }
+  ]
+}
