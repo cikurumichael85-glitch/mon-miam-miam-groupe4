@@ -1,0 +1,23 @@
+# Configuration privée et dépendances
+**/.env
+**/.env.*
+!**/.env.example
+!**/*.env.example
+**/auth.json
+**/node_modules/
+**/vendor/
+**/dist/
+**/coverage/
+**/.phpunit.cache/
+**/.phpunit.result.cache
+**/*.log
+*.dump
+*.sqlite
+*.sqlite3
+*.key
+*.pem
+.local/
+AGENTS.md
+MEMOIRE_LOCALE.md
+livrables_backend/
+livrables_frontend/

@@ -1,0 +1,32 @@
+{
+  "depot_source": "cikurumichael85-glitch/mon-miam-miam",
+  "branche_source": "chore/MMM-42-deploiement-vercel",
+  "commit_source": "c65a2066db0311a46824e8c8de56b26513d6b1a0",
+  "date": "2026-10-29",
+  "depot_cible": "cikurumichael85-glitch/mon-miam-miam-groupe4",
+  "fichiers_source": 388,
+  "fichiers_importes": 376,
+  "copies_identiques": 373,
+  "adaptes": [
+    ".github/scripts/pr-policy.mjs",
+    ".github/scripts/pr-policy.test.mjs",
+    ".github/workflows/verification.yml"
+  ],
+  "exclusions_ou_remplacements": {
+    "README.md": "Remplacé par le README de reconstruction du nouveau dépôt.",
+    "CONTRIBUTING.md": "Remplacé par le flux contrib -> integration -> main.",
+    ".gitignore": "Remplacé par les exclusions du nouveau dépôt.",
+    "backend/AGENTS.md": "Instructions locales d’assistance, hors sources applicatives à livrer.",
+    "backend/CLAUDE.md": "Instructions d’assistance, hors sources applicatives à livrer.",
+    "backend/.npmrc": "Ancien outillage frontend Laravel non utilisé.",
+    "backend/package.json": "Ancien outillage frontend Laravel non utilisé ; React est dans frontend.",
+    "backend/vite.config.js": "Ancien Vite Laravel non utilisé par les routes JSON.",
+    "backend/resources/css/app.css": "Ancien écran Laravel non appelé par les routes.",
+    "backend/resources/js/app.js": "Ancien écran Laravel non appelé par les routes.",
+    "backend/resources/views/welcome.blade.php": "Vue de bienvenue inutilisée ; la route racine retourne du JSON.",
+    "frontend/src/assets/vite.svg": "Logo du socle Vite inutilisé.",
+    ".github/scripts/pr-policy.mjs": "Remplacé par la politique integration et branches nominatives.",
+    ".github/scripts/pr-policy.test.mjs": "Tests de la politique remplacée ; nouveaux cas préparés.",
+    ".github/workflows/verification.yml": "Remplacé par une CI de reconstruction adaptée aux sources disponibles."
+  }
+}
