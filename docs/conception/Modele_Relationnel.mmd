@@ -1,0 +1,24 @@
+erDiagram
+ USERS ||--o{ PLATFORM_GRANTS : recoit
+ USERS ||--o{ RESTAURANT_MEMBERSHIPS : appartient
+ RESTAURANTS ||--o{ RESTAURANT_MEMBERSHIPS : habilite
+ RESTAURANTS ||--o{ RESTAURANT_HOURS : ouvre
+ RESTAURANTS ||--o{ MENU_CATEGORIES : classe
+ MENU_CATEGORIES ||--o{ MENU_ITEMS : regroupe
+ RESTAURANTS ||--o{ MENU_ITEMS : propose
+ USERS ||--o{ ORDER_QUOTES : demande
+ RESTAURANTS ||--o{ ORDER_QUOTES : calcule
+ ORDER_QUOTES ||--o| ORDERS : confirme
+ USERS ||--o{ ORDERS : commande
+ RESTAURANTS ||--o{ ORDERS : recoit
+ ORDERS ||--|{ ORDER_LINES : contient
+ MENU_ITEMS ||--o{ ORDER_LINES : reference
+ ORDERS ||--|{ ORDER_EVENTS : trace
+ USERS ||--o{ IDEMPOTENCY_KEYS : utilise
+ ORDERS o|--o{ IDEMPOTENCY_KEYS : protege
+ ORDERS ||--o{ CLAIMS : concerne
+ USERS ||--o{ CLAIMS : depose
+ CLAIMS ||--o{ CLAIM_REPLIES : recoit
+ USERS ||--o{ CLAIM_REPLIES : redige
+ RESTAURANTS o|--o{ AUDIT_EVENTS : contexte
+ USERS ||--o{ AUDIT_EVENTS : effectue
