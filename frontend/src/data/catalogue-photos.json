@@ -1,0 +1,912 @@
+[
+  {
+    "restaurant_id": "1",
+    "name": "Riz aux haricots",
+    "image": "/images/rice-beans.webp",
+    "note": "Photo d’illustration : riz et haricots, présentation différente selon la cuisine.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Fufu, fumbwa & poisson",
+    "image": "/images/fumbwa.webp",
+    "note": "Photo d’illustration du fumbwa ; le fufu et le poisson ne sont pas représentés.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Fufu, pondu & poisson",
+    "image": "/images/fufu-fish.webp",
+    "note": "Photo d’illustration d’un assortiment de foufou, saka-saka et poisson.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Pondu & chikwangue",
+    "image": "/images/moambe.webp",
+    "note": "Photo d’illustration d’un assortiment moambe, pondu et chikwangue ; la portion servie diffère.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Madesu & chikwangue",
+    "image": "/images/chikwangue.webp",
+    "note": "Photo d’illustration de chikwangue ; les haricots ne sont pas représentés.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Assiette de makemba",
+    "image": "/images/plantain.webp",
+    "note": "Photo d’illustration de plantains frits.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Poulet à la moambe",
+    "image": "/images/moambe.webp",
+    "note": "Photo d’illustration de moambe ; les accompagnements photographiés diffèrent de la formule au riz.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Poisson à la braise",
+    "image": "/images/fish.webp",
+    "note": "Photo d’illustration de poisson grillé ; portion et accompagnement à confirmer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Poulet braisé & makemba",
+    "image": "/images/chicken.webp",
+    "note": "Photo d’illustration du poulet grillé ; les makemba ne sont pas représentés.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Shawarma au poulet",
+    "image": "/images/shawarma.webp",
+    "note": "Photo d’illustration de shawarma ; la garniture exacte peut différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Tacos au poulet",
+    "image": "/images/tacos.webp",
+    "note": "Photo d’illustration de tacos français ; garniture à confirmer auprès du restaurant.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Burger maison",
+    "image": "/images/burger.webp",
+    "note": "Photo d’illustration de burger ; garniture différente selon la préparation.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Double burger fromage",
+    "image": "/images/burger.webp",
+    "note": "Photo d’illustration d’un burger simple ; le double steak n’est pas représenté.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Pizza au fromage",
+    "image": "/images/pizza.webp",
+    "note": "Photo d’illustration de pizza ; forme et garniture selon la préparation.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Pizza au poulet",
+    "image": "/images/pizza.webp",
+    "note": "Photo d’illustration de pizza au fromage ; le poulet n’est pas représenté.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Sandwich au poulet",
+    "image": "/images/sandwich.webp",
+    "note": "Photo d’illustration de sandwich au poulet.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Coca-Cola",
+    "image": "/images/coca-cola.webp",
+    "note": "Photo d’illustration du produit ; format et emballage peuvent varier.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Fanta orange",
+    "image": "/images/fanta.webp",
+    "note": "Photo d’illustration du produit ; format et emballage peuvent varier.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Sprite",
+    "image": "/images/sprite.webp",
+    "note": "Photo d’illustration du produit ; format et emballage peuvent varier.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Vital’o grenadine",
+    "image": "/images/grenadine.webp",
+    "note": "Illustration générique de grenadine : cette photo ne représente pas une bouteille Vital’o.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Bavaria",
+    "image": "/images/bavaria.webp",
+    "note": "Photo d’illustration du produit ; format et emballage peuvent varier.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Castel Beer",
+    "image": "/images/castel.webp",
+    "note": "Photo d’illustration du produit ; format et emballage peuvent varier.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Heineken",
+    "image": "/images/heineken.webp",
+    "note": "Photo d’illustration du produit ; format et emballage peuvent varier.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Savanna Dry",
+    "image": "/images/savanna.webp",
+    "note": "Photo d’illustration du produit ; format et emballage peuvent varier.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Moussaka grecque",
+    "image": "/images/menu-moussaka.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Souvlaki de poulet",
+    "image": "/images/menu-souvlaki.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Salade grecque à la feta",
+    "image": "/images/menu-greek-salad.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Spaghetti cacio e pepe",
+    "image": "/images/menu-cacio-pepe.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Bucatini all’amatriciana",
+    "image": "/images/menu-amatriciana.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Saltimbocca alla romana",
+    "image": "/images/menu-saltimbocca.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Bœuf bourguignon",
+    "image": "/images/menu-bourguignon.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Coq au vin et pommes vapeur",
+    "image": "/images/menu-coq-vin.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Quiche lorraine et salade",
+    "image": "/images/menu-quiche.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Canard laqué et riz parfumé",
+    "image": "/images/menu-duck.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Poulet kung pao",
+    "image": "/images/menu-kung-pao.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Nouilles sautées aux légumes",
+    "image": "/images/menu-noodles.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Assortiment de sushis au saumon",
+    "image": "/images/menu-sushi.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Poulet teriyaki et riz",
+    "image": "/images/menu-teriyaki.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Ramen au bœuf",
+    "image": "/images/menu-ramen.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Butter chicken et riz basmati",
+    "image": "/images/menu-butter-chicken.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Biryani de poulet",
+    "image": "/images/menu-biryani.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Palak paneer et riz",
+    "image": "/images/menu-palak.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Ouzo citron-menthe",
+    "image": "/images/menu-cocktail-citrus.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Spritz italien",
+    "image": "/images/menu-spritz.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Kir royal",
+    "image": "/images/menu-kir.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Litchi Martini",
+    "image": "/images/menu-martini.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Yuzu et saké",
+    "image": "/images/menu-cocktail-citrus.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Mangue épicée au rhum",
+    "image": "/images/menu-cocktail-mango.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Citron, miel et menthe",
+    "image": "/images/menu-cocktail-citrus.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Spritz orange sans alcool",
+    "image": "/images/menu-spritz.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Pomme, cassis et romarin",
+    "image": "/images/menu-kir.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Litchi, jasmin et citron",
+    "image": "/images/menu-martini.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Yuzu et thé vert",
+    "image": "/images/menu-cocktail-citrus.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Mangue, citron et cardamome",
+    "image": "/images/menu-cocktail-mango.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Duo de croissants pur beurre",
+    "image": "/images/menu-croissant.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Duo de pains au chocolat",
+    "image": "/images/menu-pain-chocolat.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Tartines parisiennes",
+    "image": "/images/menu-tartines.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Pain perdu aux fruits",
+    "image": "/images/menu-french-toast.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Crêpes au sucre et au citron",
+    "image": "/images/menu-crepes.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Crêpes chocolat-banane",
+    "image": "/images/menu-crepes.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Omelette au fromage",
+    "image": "/images/menu-omelette.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Œufs brouillés et tartines",
+    "image": "/images/menu-scrambled.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Croque-monsieur du matin",
+    "image": "/images/menu-croque.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Croque-madame",
+    "image": "/images/menu-croque.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Formule parisienne",
+    "image": "/images/menu-breakfast.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Petit-déjeuner français complet",
+    "image": "/images/menu-breakfast.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Brunch gourmand de la maison",
+    "image": "/images/menu-breakfast.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Café crème",
+    "image": "/images/menu-coffee-cup.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Chocolat chaud maison",
+    "image": "/images/menu-hot-chocolate.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Thé et citron",
+    "image": "/images/menu-tea.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Jus d’orange",
+    "image": "/images/juice.webp",
+    "note": "Photo d’illustration : la recette, la garniture et la présentation servies peuvent différer.",
+    "style": "bottle"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Poulet à la moambe et riz",
+    "image": "/images/moambe.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Poulet à la moambe et chikwangue",
+    "image": "/images/moambe.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Poulet braisé et frites",
+    "image": "/images/chicken.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Poulet braisé et plantains",
+    "image": "/images/chicken.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Tilapia braisé et riz",
+    "image": "/images/fish.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Tilapia braisé et chikwangue",
+    "image": "/images/fish.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Poisson frit et fufu",
+    "image": "/images/fish.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Makayabu et riz",
+    "image": "/images/fish.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Fumbwa et riz",
+    "image": "/images/fumbwa.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Pondu et riz",
+    "image": "/images/pondu.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Haricots et chikwangue",
+    "image": "/images/rice-beans.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Haricots et plantains",
+    "image": "/images/rice-beans.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Bœuf sauté et riz",
+    "image": "/images/menu-goat.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Chèvre braisée et chikwangue",
+    "image": "/images/menu-goat.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Porc braisé et plantains",
+    "image": "/images/menu-pork-grill.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Brochettes de bœuf et frites",
+    "image": "/images/menu-goat.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Plantains dorés et salade",
+    "image": "/images/plantain.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Beignets congolais",
+    "image": "/images/menu-doughnuts.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "1",
+    "name": "Riz aux légumes du marché",
+    "image": "/images/menu-vegetable-rice.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Dolmades et tzatziki",
+    "image": "/images/menu-dolmades.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Spanakopita aux épinards",
+    "image": "/images/menu-spanakopita.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Gyros de poulet en pita",
+    "image": "/images/menu-souvlaki.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Spaghetti alla carbonara",
+    "image": "/images/menu-carbonara.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Risotto aux champignons",
+    "image": "/images/menu-risotto.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Gnocchi au pesto",
+    "image": "/images/menu-gnocchi.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Ratatouille et riz",
+    "image": "/images/menu-ratatouille.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Steak-frites sauce au poivre",
+    "image": "/images/menu-steak.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Poisson meunière et pommes vapeur",
+    "image": "/images/fish.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Nouilles sautées au poulet",
+    "image": "/images/menu-noodles.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Nouilles sautées au bœuf",
+    "image": "/images/menu-noodles.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Raviolis grillés du chef",
+    "image": "/images/menu-dumplings.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Gyozas au poulet",
+    "image": "/images/menu-dumplings.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Tempura de poisson",
+    "image": "/images/menu-tempura.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Yakisoba aux légumes",
+    "image": "/images/menu-noodles.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Poulet tandoori et riz",
+    "image": "/images/menu-tandoori.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Samosas végétariens",
+    "image": "/images/menu-samosa.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "2",
+    "name": "Poulet tikka masala",
+    "image": "/images/menu-butter-chicken.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Croissant jambon-fromage",
+    "image": "/images/menu-croissant.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Croissant à l’omelette",
+    "image": "/images/menu-croissant.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Brioche toastée au beurre",
+    "image": "/images/menu-brioche.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Brioche au chocolat",
+    "image": "/images/menu-brioche.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Pancakes au miel",
+    "image": "/images/menu-pancakes.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Pancakes aux fruits",
+    "image": "/images/menu-pancakes.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Gaufres au chocolat",
+    "image": "/images/menu-waffles.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Gaufres aux fruits",
+    "image": "/images/menu-waffles.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Crêpes à la confiture",
+    "image": "/images/menu-crepes.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Crêpes au miel",
+    "image": "/images/menu-crepes.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Pain perdu au chocolat",
+    "image": "/images/menu-french-toast.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Brioche perdue à la vanille",
+    "image": "/images/menu-french-toast.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Omelette aux fines herbes",
+    "image": "/images/menu-omelette.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Omelette forestière",
+    "image": "/images/menu-omelette.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Œufs brouillés au fromage",
+    "image": "/images/menu-scrambled.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Œufs brouillés aux champignons",
+    "image": "/images/menu-scrambled.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Tartines au saumon fumé",
+    "image": "/images/menu-salmon-toast.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Tartines à l’avocat",
+    "image": "/images/menu-avocado-toast.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Fougasse aux olives",
+    "image": "/images/menu-fougasse.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Fromage blanc et fruits",
+    "image": "/images/menu-yogurt.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Bol de yaourt et granola",
+    "image": "/images/menu-yogurt.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  },
+  {
+    "restaurant_id": "3",
+    "name": "Salade de fruits du matin",
+    "image": "/images/menu-fruit-salad.webp",
+    "note": "Photo d’illustration de la famille du plat ; les ingrédients, accompagnements et la présentation peuvent différer.",
+    "style": "plate"
+  }
+]
