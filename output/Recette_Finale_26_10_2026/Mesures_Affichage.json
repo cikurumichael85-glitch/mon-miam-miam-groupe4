@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-26",
+  "scope": "Navigateur intégré, contrôles de fenêtres de différentes largeurs",
+  "small": {
+    "contentWidth": 305,
+    "width": 305
+  },
+  "layouts": [
+    {
+      "requested": {
+        "width": 375,
+        "height": 812
+      },
+      "brokenImages": [],
+      "columns": "155.5px 155.5px",
+      "contentWidth": 360,
+      "width": 360
+    },
+    {
+      "requested": {
+        "width": 768,
+        "height": 1024
+      },
+      "brokenImages": [],
+      "columns": "322.938px 322.938px",
+      "contentWidth": 753,
+      "width": 753
+    },
+    {
+      "requested": {
+        "width": 1440,
+        "height": 900
+      },
+      "brokenImages": [],
+      "columns": "298.99px 298.99px 298.99px 298.99px",
+      "contentWidth": 1425,
+      "width": 1425
+    }
+  ],
+  "guestRoutes": [
+    {
+      "route": "administration",
+      "loginVisible": true
+    },
+    {
+      "route": "service",
+      "loginVisible": true
+    },
+    {
+      "route": "commandes",
+      "loginVisible": true
+    },
+    {
+      "route": "fidelite",
+      "loginVisible": true
+    },
+    {
+      "route": "restaurants",
+      "loginVisible": true
+    }
+  ],
+  "cart": "Un article ajouté puis retiré du panier en mémoire, aucune commande créée",
+  "keyboard": "Échap ferme la fiche et restaure le focus sur Voir Riz aux haricots"
+}

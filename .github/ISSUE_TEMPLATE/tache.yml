@@ -1,0 +1,30 @@
+name: Tâche de réalisation
+description: Une tâche technique reliée au backlog Jira
+title: "[MMM-...] "
+labels: [suivi-jira]
+body:
+  - type: input
+    id: jira
+    attributes:
+      label: Tâche Jira
+      description: Lien complet vers la vraie tâche MMM
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Résultat attendu et critères de fin
+    validations:
+      required: true
+  - type: input
+    id: ownership
+    attributes:
+      label: Responsable et relecteur du binôme
+    validations:
+      required: true
+  - type: textarea
+    id: checks
+    attributes:
+      label: Vérifications et preuves attendues
+    validations:
+      required: true

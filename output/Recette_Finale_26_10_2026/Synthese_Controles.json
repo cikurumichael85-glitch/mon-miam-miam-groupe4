@@ -1,0 +1,126 @@
+{
+  "date": "2026-10-26",
+  "scope": "Recette locale, sans paiement ni modification des données métier existantes",
+  "frontend": {
+    "files": 16,
+    "modules": 62,
+    "tests": 78,
+    "build": "passed",
+    "failures": 0,
+    "lint": "passed"
+  },
+  "backend": {
+    "failures": 0,
+    "composer_validate": "passed",
+    "assertions": 635,
+    "platform_requirements": "passed",
+    "errors": 0,
+    "tests": 116,
+    "driver": "SQLite en mémoire",
+    "pint": "passed"
+  },
+  "postgresql": {
+    "previous_step": 4,
+    "executed_at_step_5": false,
+    "tests": 116,
+    "status": "passed au point 4",
+    "assertions": 635
+  },
+  "http": {
+    "results": [
+      {
+        "url": "http://127.0.0.1:8010/up",
+        "method": "GET",
+        "status": 200,
+        "expected": 200,
+        "passed": true
+      },
+      {
+        "url": "http://127.0.0.1:5173/",
+        "method": "GET",
+        "status": 200,
+        "expected": 200,
+        "passed": true
+      },
+      {
+        "url": "http://127.0.0.1:5173/api/v1/restaurants",
+        "method": "GET",
+        "status": 200,
+        "expected": 200,
+        "passed": true
+      },
+      {
+        "url": "http://127.0.0.1:5173/api/v1/restaurants/1/menu",
+        "method": "GET",
+        "status": 200,
+        "expected": 200,
+        "passed": true
+      },
+      {
+        "url": "http://127.0.0.1:5173/api/v1/me",
+        "method": "GET",
+        "status": 401,
+        "expected": 401,
+        "passed": true
+      },
+      {
+        "url": "http://127.0.0.1:5173/api/v1/me/orders",
+        "method": "GET",
+        "status": 401,
+        "expected": 401,
+        "passed": true
+      },
+      {
+        "url": "http://127.0.0.1:5173/api/v1/restaurants/1/orders",
+        "method": "GET",
+        "status": 401,
+        "expected": 401,
+        "passed": true
+      },
+      {
+        "url": "http://127.0.0.1:5173/api/v1/restaurants/1/settings",
+        "method": "GET",
+        "status": 401,
+        "expected": 401,
+        "passed": true
+      },
+      {
+        "url": "http://127.0.0.1:5173/api/v1/restaurants/1/employees",
+        "method": "GET",
+        "status": 401,
+        "expected": 401,
+        "passed": true
+      },
+      {
+        "url": "http://127.0.0.1:5173/api/v1/restaurants/1/loyalty-program",
+        "method": "GET",
+        "status": 401,
+        "expected": 401,
+        "passed": true
+      },
+      {
+        "url": "http://127.0.0.1:5173/api/v1/platform/statistics",
+        "method": "GET",
+        "status": 401,
+        "expected": 401,
+        "passed": true
+      },
+      {
+        "url": "http://127.0.0.1:5173/api/v1/auth/login",
+        "method": "POST sans CSRF et sans identifiants",
+        "status": 419,
+        "expected": 419,
+        "passed": true
+      }
+    ],
+    "checks": 12,
+    "passed": 12
+  },
+  "limits": [
+    "Comptes personnels non parcourus visuellement",
+    "Formats de fenêtres, pas téléphones physiques",
+    "Autres navigateurs et accessibilité exhaustive non validés",
+    "Paiement réel non validé, débogage arrêté",
+    "Décisions commerciales du point 4 en attente"
+  ]
+}
