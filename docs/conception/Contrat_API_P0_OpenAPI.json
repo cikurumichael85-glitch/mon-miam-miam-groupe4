@@ -1,0 +1,3581 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Mon Miam Miam - Contrat API P0 proposé - Groupe 4",
+    "version": "0.1.0",
+    "description": "Conception du 21/10/2026, ULC-ICAM RDC. Aucune route déployée. Modèle PostgreSQL proposé. Authentification web session/cookies ; décisions métier et droits à valider. Périmètre P0, extensions documentées séparément."
+  },
+  "servers": [
+    {
+      "url": "/api/v1",
+      "description": "Chemin proposé ; aucun serveur réel déclaré."
+    }
+  ],
+  "security": [
+    {
+      "sessionCookie": []
+    }
+  ],
+  "paths": {
+    "/sanctum/csrf-cookie": {
+      "get": {
+        "summary": "Initialiser la protection CSRF",
+        "operationId": "get_sanctum_csrf_cookie",
+        "tags": [
+          "Public"
+        ],
+        "description": "Initialiser la protection CSRF",
+        "x-authorization-rule": "Public",
+        "responses": {
+          "204": {
+            "description": "Réponse attendue ; contrat proposé."
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "security": []
+      },
+      "servers": [
+        {
+          "url": "/"
+        }
+      ]
+    },
+    "/auth/register": {
+      "post": {
+        "summary": "Créer un compte client",
+        "operationId": "post_auth_register",
+        "tags": [
+          "Public"
+        ],
+        "description": "Créer un compte client",
+        "x-authorization-rule": "Public",
+        "responses": {
+          "201": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Register"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ],
+        "security": []
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Ouvrir une session",
+        "operationId": "post_auth_login",
+        "tags": [
+          "Public"
+        ],
+        "description": "Ouvrir une session",
+        "x-authorization-rule": "Public",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "writeOnly": true
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ],
+        "security": []
+      }
+    },
+    "/auth/forgot-password": {
+      "post": {
+        "summary": "Demander un lien de récupération",
+        "operationId": "post_auth_forgot_password",
+        "tags": [
+          "Public"
+        ],
+        "description": "Réponse générique identique que le compte existe ou non ; limitation du débit.",
+        "x-authorization-rule": "Public",
+        "responses": {
+          "202": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "email"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ],
+        "security": []
+      }
+    },
+    "/auth/reset-password": {
+      "post": {
+        "summary": "Réinitialiser par lien reçu",
+        "operationId": "post_auth_reset_password",
+        "tags": [
+          "Public"
+        ],
+        "description": "Réinitialiser par lien reçu",
+        "x-authorization-rule": "Public",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "token": {
+                    "type": "string",
+                    "writeOnly": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "writeOnly": true,
+                    "minLength": 12,
+                    "pattern": "^(?=.*[A-Z])(?=.*[0-9]).*$"
+                  },
+                  "password_confirmation": {
+                    "type": "string",
+                    "format": "password",
+                    "writeOnly": true
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "email",
+                  "token",
+                  "password",
+                  "password_confirmation"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ],
+        "security": []
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "summary": "Fermer la session",
+        "operationId": "post_auth_logout",
+        "tags": [
+          "Connecté"
+        ],
+        "description": "Fermer la session",
+        "x-authorization-rule": "Connecté",
+        "responses": {
+          "204": {
+            "description": "Réponse attendue ; contrat proposé."
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/me": {
+      "get": {
+        "summary": "Lire son profil et ses rattachements",
+        "operationId": "get_me",
+        "tags": [
+          "Connecté"
+        ],
+        "description": "Lire son profil et ses rattachements",
+        "x-authorization-rule": "Connecté",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        }
+      }
+    },
+    "/restaurants": {
+      "get": {
+        "summary": "Lister les restaurants visibles",
+        "operationId": "get_restaurants",
+        "tags": [
+          "Public"
+        ],
+        "description": "Projection publique ; pas de contacts clients ou de données de gestion. Inactifs masqués, fermés signalés selon politique à valider.",
+        "x-authorization-rule": "Public",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Restaurant"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "per_page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "total": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "page",
+                        "per_page",
+                        "total"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "data",
+                    "meta"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          }
+        ],
+        "security": []
+      }
+    },
+    "/restaurants/{restaurantId}/menu": {
+      "get": {
+        "summary": "Consulter le menu public",
+        "operationId": "get_restaurants_restaurantId_menu",
+        "tags": [
+          "Public"
+        ],
+        "description": "Consulter le menu public",
+        "x-authorization-rule": "Public",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Menu"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          }
+        ],
+        "security": []
+      }
+    },
+    "/restaurants/{restaurantId}/order-quotes": {
+      "post": {
+        "summary": "Calculer un récapitulatif serveur",
+        "operationId": "post_restaurants_restaurantId_order_quotes",
+        "tags": [
+          "Client connecté"
+        ],
+        "description": "Calculer un récapitulatif serveur",
+        "x-authorization-rule": "Client connecté",
+        "responses": {
+          "201": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quote"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuoteRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/orders": {
+      "post": {
+        "summary": "Confirmer un devis et créer une commande",
+        "operationId": "post_restaurants_restaurantId_orders",
+        "tags": [
+          "Client propriétaire du devis"
+        ],
+        "description": "Transaction atomique : session, devis, restaurant, disponibilité, prix et règles revérifiés. Aucun user_id, rôle ou total client accepté. En rejeu identique, retourner 200 avec la commande existante, sans nouvel événement.",
+        "x-authorization-rule": "Client propriétaire du devis",
+        "responses": {
+          "201": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "200": {
+            "description": "Rejeu idempotent ; commande existante.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderCreate"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "Même clé et même devis : même commande ; contenu différent : 409."
+          }
+        ]
+      },
+      "get": {
+        "summary": "Lister les commandes du restaurant",
+        "operationId": "get_restaurants_restaurantId_orders",
+        "tags": [
+          "Personnel rattaché et actif"
+        ],
+        "description": "Lister les commandes du restaurant",
+        "x-authorization-rule": "Personnel rattaché et actif",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/StaffOrder"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "per_page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "total": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "page",
+                        "per_page",
+                        "total"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "data",
+                    "meta"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          }
+        ]
+      }
+    },
+    "/me/orders": {
+      "get": {
+        "summary": "Lister ses propres commandes, tous restaurants",
+        "operationId": "get_me_orders",
+        "tags": [
+          "Client connecté"
+        ],
+        "description": "Lister ses propres commandes, tous restaurants",
+        "x-authorization-rule": "Client connecté",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Order"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "per_page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "total": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "page",
+                        "per_page",
+                        "total"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "data",
+                    "meta"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          }
+        ]
+      }
+    },
+    "/me/orders/{orderId}": {
+      "get": {
+        "summary": "Lire sa propre commande",
+        "operationId": "get_me_orders_orderId",
+        "tags": [
+          "Propriétaire uniquement"
+        ],
+        "description": "Lire sa propre commande",
+        "x-authorization-rule": "Propriétaire uniquement",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/orders/{orderId}": {
+      "get": {
+        "summary": "Lire une commande du restaurant",
+        "operationId": "get_restaurants_restaurantId_orders_orderId",
+        "tags": [
+          "Personnel rattaché et actif"
+        ],
+        "description": "Lire une commande du restaurant",
+        "x-authorization-rule": "Personnel rattaché et actif",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StaffOrder"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/orders/{orderId}/transitions": {
+      "post": {
+        "summary": "Changer un état autorisé",
+        "operationId": "post_restaurants_restaurantId_orders_orderId_transitions",
+        "tags": [
+          "Personnel ; matrice des droits"
+        ],
+        "description": "Changer un état autorisé",
+        "x-authorization-rule": "Personnel ; matrice des droits",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransitionRequest"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/menu-items": {
+      "post": {
+        "summary": "Créer un article",
+        "operationId": "post_restaurants_restaurantId_menu_items",
+        "tags": [
+          "Administrateur local"
+        ],
+        "description": "Créer un article",
+        "x-authorization-rule": "Administrateur local",
+        "responses": {
+          "201": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemInput"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/menu-items/{itemId}": {
+      "patch": {
+        "summary": "Modifier un article",
+        "operationId": "patch_restaurants_restaurantId_menu_items_itemId",
+        "tags": [
+          "Administrateur local"
+        ],
+        "description": "Modifier un article",
+        "x-authorization-rule": "Administrateur local",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemInput"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/menu-items/{itemId}/archive": {
+      "post": {
+        "summary": "Archiver sans effacer les lignes historiques",
+        "operationId": "post_restaurants_restaurantId_menu_items_itemId_archive",
+        "tags": [
+          "Administrateur local"
+        ],
+        "description": "Archiver sans effacer les lignes historiques",
+        "x-authorization-rule": "Administrateur local",
+        "responses": {
+          "204": {
+            "description": "Réponse attendue ; contrat proposé."
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/menu-items/{itemId}/availability": {
+      "patch": {
+        "summary": "Changer la disponibilité",
+        "operationId": "patch_restaurants_restaurantId_menu_items_itemId_availability",
+        "tags": [
+          "Employé, gérant ou administrateur local"
+        ],
+        "description": "Changer la disponibilité",
+        "x-authorization-rule": "Employé, gérant ou administrateur local",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Item"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "available": {
+                    "type": "boolean"
+                  },
+                  "expected_version": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "available",
+                  "expected_version"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/categories": {
+      "get": {
+        "summary": "Lister les catégories visibles",
+        "operationId": "get_restaurants_restaurantId_categories",
+        "tags": [
+          "Public"
+        ],
+        "description": "Lister les catégories visibles",
+        "x-authorization-rule": "Public",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Category"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "per_page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "total": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "page",
+                        "per_page",
+                        "total"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "data",
+                    "meta"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          }
+        ],
+        "security": []
+      },
+      "post": {
+        "summary": "Créer une catégorie",
+        "operationId": "post_restaurants_restaurantId_categories",
+        "tags": [
+          "Administrateur local"
+        ],
+        "description": "Créer une catégorie",
+        "x-authorization-rule": "Administrateur local",
+        "responses": {
+          "201": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 100
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/employees": {
+      "post": {
+        "summary": "Créer un accès employé",
+        "operationId": "post_restaurants_restaurantId_employees",
+        "tags": [
+          "Gérant ou administrateur local"
+        ],
+        "description": "Créer un accès employé",
+        "x-authorization-rule": "Gérant ou administrateur local",
+        "responses": {
+          "201": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Membership"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeInput"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/memberships/{userId}": {
+      "patch": {
+        "summary": "Activer ou retirer un accès employé",
+        "operationId": "patch_restaurants_restaurantId_memberships_userId",
+        "tags": [
+          "Administrateur local uniquement"
+        ],
+        "description": "Cible limitée au rôle employee ; impossible de changer son rôle, de toucher un gérant ou de se donner un droit global.",
+        "x-authorization-rule": "Administrateur local uniquement",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Membership"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "active": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "active"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/me/orders/{orderId}/claims": {
+      "post": {
+        "summary": "Déposer une réclamation",
+        "operationId": "post_me_orders_orderId_claims",
+        "tags": [
+          "Propriétaire de la commande"
+        ],
+        "description": "Déposer une réclamation",
+        "x-authorization-rule": "Propriétaire de la commande",
+        "responses": {
+          "201": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Claim"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClaimInput"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/me/claims": {
+      "get": {
+        "summary": "Lire ses réclamations et réponses publiées",
+        "operationId": "get_me_claims",
+        "tags": [
+          "Client connecté"
+        ],
+        "description": "Lire ses réclamations et réponses publiées",
+        "x-authorization-rule": "Client connecté",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Claim"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "per_page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "total": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "page",
+                        "per_page",
+                        "total"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "data",
+                    "meta"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/claims": {
+      "get": {
+        "summary": "Lister les réclamations du restaurant",
+        "operationId": "get_restaurants_restaurantId_claims",
+        "tags": [
+          "Personnel rattaché"
+        ],
+        "description": "Lister les réclamations du restaurant",
+        "x-authorization-rule": "Personnel rattaché",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/StaffClaim"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "per_page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "total": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "additionalProperties": false,
+                      "required": [
+                        "page",
+                        "per_page",
+                        "total"
+                      ]
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "data",
+                    "meta"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/claims/{claimId}/replies": {
+      "post": {
+        "summary": "Proposer une réponse à approuver",
+        "operationId": "post_restaurants_restaurantId_claims_claimId_replies",
+        "tags": [
+          "Employé rattaché"
+        ],
+        "description": "Proposer une réponse à approuver",
+        "x-authorization-rule": "Employé rattaché",
+        "responses": {
+          "201": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reply"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "body": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4000
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "body"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "name": "claimId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/replies/{replyId}/review": {
+      "post": {
+        "summary": "Approuver ou rejeter la réponse",
+        "operationId": "post_restaurants_restaurantId_replies_replyId_review",
+        "tags": [
+          "Gérant rattaché"
+        ],
+        "description": "Rejet motivé ; approbation publie une seule fois la réponse au client. Auto-approbation interdite par défaut proposé.",
+        "x-authorization-rule": "Gérant rattaché",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reply"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "decision": {
+                    "type": "string",
+                    "enum": [
+                      "approve",
+                      "reject"
+                    ]
+                  },
+                  "reason": {
+                    "type": "string",
+                    "maxLength": 1000
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "decision"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "name": "replyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/restaurants/{restaurantId}/sales-summary": {
+      "get": {
+        "summary": "Lire les ventes du restaurant",
+        "operationId": "get_restaurants_restaurantId_sales_summary",
+        "tags": [
+          "Personnel ; portée selon rôle"
+        ],
+        "description": "Période ISO : from/to à implémenter avec fuseau du restaurant ; employé limité à la semaine autorisée. Distinguer commandes terminées et paiements réellement enregistrés ; les remboursements ne doivent pas être comptés comme encaissements.",
+        "x-authorization-rule": "Personnel ; portée selon rôle",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "CDF"
+                      ]
+                    },
+                    "completed_orders": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "completed_order_total": {
+                      "$ref": "#/components/schemas/Money"
+                    },
+                    "recorded_paid_total": {
+                      "$ref": "#/components/schemas/Money"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "currency",
+                    "completed_orders",
+                    "completed_order_total",
+                    "recorded_paid_total"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ]
+      }
+    },
+    "/platform/restaurants": {
+      "post": {
+        "summary": "Créer un restaurant",
+        "operationId": "post_platform_restaurants",
+        "tags": [
+          "Administrateur de plateforme"
+        ],
+        "description": "Créer un restaurant",
+        "x-authorization-rule": "Administrateur de plateforme",
+        "responses": {
+          "201": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restaurant"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RestaurantInput"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/platform/restaurants/{restaurantId}": {
+      "patch": {
+        "summary": "Activer ou désactiver un restaurant",
+        "operationId": "patch_platform_restaurants_restaurantId",
+        "tags": [
+          "Administrateur de plateforme"
+        ],
+        "description": "Activer ou désactiver un restaurant",
+        "x-authorization-rule": "Administrateur de plateforme",
+        "responses": {
+          "200": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restaurant"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "active",
+                      "inactive"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "status"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    },
+    "/platform/restaurants/{restaurantId}/managers": {
+      "post": {
+        "summary": "Rattacher un responsable",
+        "operationId": "post_platform_restaurants_restaurantId_managers",
+        "tags": [
+          "Administrateur de plateforme"
+        ],
+        "description": "Rattacher un responsable",
+        "x-authorization-rule": "Administrateur de plateforme",
+        "responses": {
+          "201": {
+            "description": "Réponse attendue ; contrat proposé.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Membership"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "419": {
+            "$ref": "#/components/responses/E419"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "$ref": "#/components/schemas/Id"
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "manager",
+                      "restaurant_admin"
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "user_id",
+                  "role"
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "restaurantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Id": {
+        "type": "string",
+        "pattern": "^[1-9][0-9]*$",
+        "example": "1",
+        "description": "Identifiant numérique transmis comme texte pour éviter les pertes de précision JavaScript."
+      },
+      "Money": {
+        "type": "string",
+        "pattern": "^(0|[1-9][0-9]{0,15})\\.[0-9]{2}$",
+        "example": "8000.00",
+        "description": "Montant décimal exact CDF ; deux décimales proposées, aucune conversion."
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string"
+              },
+              "fields": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "message"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "error"
+        ]
+      },
+      "Message": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "message"
+        ]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "memberships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Membership"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "email",
+          "memberships"
+        ]
+      },
+      "Membership": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "restaurant_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "employee",
+              "manager",
+              "restaurant_admin"
+            ]
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "user_id",
+          "restaurant_id",
+          "role",
+          "active"
+        ]
+      },
+      "Restaurant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "name": {
+            "type": "string"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive"
+            ]
+          },
+          "delivery_enabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "timezone",
+          "status",
+          "delivery_enabled"
+        ]
+      },
+      "RestaurantInput": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 150
+          },
+          "timezone": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Identifiant IANA vérifié côté serveur."
+          },
+          "address": {
+            "type": "string",
+            "minLength": 1
+          },
+          "delivery_enabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "timezone",
+          "address",
+          "delivery_enabled"
+        ]
+      },
+      "Item": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "restaurant_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "category_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "currency": {
+            "type": "string",
+            "enum": [
+              "CDF"
+            ]
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "restaurant_id",
+          "category_id",
+          "name",
+          "price",
+          "currency",
+          "available",
+          "version"
+        ]
+      },
+      "ItemInput": {
+        "type": "object",
+        "properties": {
+          "category_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 150
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "price": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "available": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "category_id",
+          "name",
+          "price",
+          "available"
+        ]
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "restaurant_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "restaurant_id",
+          "name"
+        ]
+      },
+      "Menu": {
+        "type": "object",
+        "properties": {
+          "restaurant": {
+            "$ref": "#/components/schemas/Restaurant"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Category"
+            }
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Item"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "restaurant",
+          "categories",
+          "items"
+        ]
+      },
+      "DeliveryAddress": {
+        "type": "object",
+        "properties": {
+          "recipient_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 150
+          },
+          "phone": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 32
+          },
+          "address": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "instructions": {
+            "type": "string",
+            "maxLength": 500
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "recipient_name",
+          "phone",
+          "address"
+        ]
+      },
+      "QuoteRequest": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "type": "object",
+              "properties": {
+                "menu_item_id": {
+                  "$ref": "#/components/schemas/Id"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 99
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "menu_item_id",
+                "quantity"
+              ]
+            }
+          },
+          "service_mode": {
+            "type": "string",
+            "enum": [
+              "on_site",
+              "delivery"
+            ]
+          },
+          "arrival_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/DeliveryAddress"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "items",
+          "service_mode"
+        ],
+        "description": "on_site exige arrival_at et interdit delivery ; delivery exige delivery et interdit arrival_at. Conditions et doublons d’article validés côté serveur. Limites et horaires proposés à valider."
+      },
+      "QuoteLine": {
+        "type": "object",
+        "properties": {
+          "menu_item_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "unit_price": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "line_total": {
+            "$ref": "#/components/schemas/Money"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "menu_item_id",
+          "name",
+          "quantity",
+          "unit_price",
+          "line_total"
+        ]
+      },
+      "Quote": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "restaurant_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currency": {
+            "type": "string",
+            "enum": [
+              "CDF"
+            ]
+          },
+          "lines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuoteLine"
+            }
+          },
+          "subtotal": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "discount": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "delivery_fee": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "total": {
+            "$ref": "#/components/schemas/Money"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "restaurant_id",
+          "expires_at",
+          "currency",
+          "lines",
+          "subtotal",
+          "discount",
+          "delivery_fee",
+          "total"
+        ]
+      },
+      "OrderCreate": {
+        "type": "object",
+        "properties": {
+          "quote_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 500
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "quote_id"
+        ]
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "restaurant_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "service_mode": {
+            "type": "string",
+            "enum": [
+              "on_site",
+              "delivery"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "accepted",
+              "preparing",
+              "ready",
+              "out_for_delivery",
+              "completed",
+              "rejected",
+              "cancelled"
+            ]
+          },
+          "payment_state": {
+            "type": "string",
+            "enum": [
+              "unrecorded",
+              "pending",
+              "paid",
+              "failed",
+              "refunded"
+            ]
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "currency": {
+            "type": "string",
+            "enum": [
+              "CDF"
+            ]
+          },
+          "subtotal": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "discount": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "delivery_fee": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "total": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "lines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuoteLine"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "restaurant_id",
+          "reference",
+          "service_mode",
+          "status",
+          "payment_state",
+          "version",
+          "currency",
+          "subtotal",
+          "discount",
+          "delivery_fee",
+          "total",
+          "lines",
+          "created_at"
+        ]
+      },
+      "StaffOrder": {
+        "type": "object",
+        "properties": {
+          "order": {
+            "$ref": "#/components/schemas/Order"
+          },
+          "customer": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "phone": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "name"
+            ]
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/DeliveryAddress"
+          },
+          "arrival_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "order",
+          "customer"
+        ]
+      },
+      "TransitionRequest": {
+        "type": "object",
+        "properties": {
+          "to_status": {
+            "type": "string",
+            "enum": [
+              "accepted",
+              "preparing",
+              "ready",
+              "out_for_delivery",
+              "completed",
+              "rejected",
+              "cancelled"
+            ]
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "to_status",
+          "expected_version"
+        ],
+        "description": "Matrice de transitions, mode de service, droit du personnel et motif contrôlés côté serveur. Refus de version périmée : 409."
+      },
+      "ClaimInput": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 150
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "subject",
+          "message"
+        ]
+      },
+      "Claim": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "restaurant_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "order_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "awaiting_approval",
+              "resolved"
+            ]
+          },
+          "published_replies": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "body": {
+                  "type": "string"
+                },
+                "published_at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "body",
+                "published_at"
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "restaurant_id",
+          "order_id",
+          "subject",
+          "message",
+          "status",
+          "published_replies"
+        ]
+      },
+      "Reply": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "claim_id": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "body": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "submitted",
+              "approved",
+              "rejected"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "claim_id",
+          "body",
+          "state"
+        ]
+      },
+      "EmployeeInput": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "email"
+        ],
+        "description": "Créer ou retrouver un compte et envoyer une activation. Rôle employee imposé côté serveur ; jamais de mot de passe partagé ou de rôle arbitraire dans la requête."
+      },
+      "Register": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 150
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "phone": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 32
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "writeOnly": true,
+            "minLength": 12,
+            "pattern": "^(?=.*[A-Z])(?=.*[0-9]).*$"
+          },
+          "password_confirmation": {
+            "type": "string",
+            "format": "password",
+            "writeOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "email",
+          "phone",
+          "password",
+          "password_confirmation"
+        ],
+        "description": "Majuscule et chiffre : CDC. Longueur minimale 12 et collecte de l’adresse au moment de la livraison : propositions à valider. Les deux mots de passe doivent être identiques."
+      },
+      "StaffClaim": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "claim",
+          "proposed_replies"
+        ],
+        "properties": {
+          "claim": {
+            "$ref": "#/components/schemas/Claim"
+          },
+          "proposed_replies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Reply"
+            }
+          }
+        },
+        "description": "Vue réservée au personnel actif du même restaurant. Comprend les réponses soumises pour permettre la revue du gérant ; jamais utilisée pour la réponse au client."
+      }
+    },
+    "securitySchemes": {
+      "sessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "mmm_session",
+        "description": "Nom de cookie proposé à configurer ; cookies de session protégés et CSRF pour mutations. Ne décrit pas une autorisation par restaurant."
+      }
+    },
+    "responses": {
+      "E400": {
+        "description": "Requête mal formée.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "E401": {
+        "description": "Connexion requise.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "E403": {
+        "description": "Permission refusée.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "E404": {
+        "description": "Ressource absente ou masquée pour prévenir une fuite inter-restaurant.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "E409": {
+        "description": "Conflit : devis périmé, prix modifié, clé réutilisée avec un autre contenu ou version de commande périmée.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "E419": {
+        "description": "Session / protection CSRF à renouveler ; comportement Laravel à configurer.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "E422": {
+        "description": "Données valides en JSON mais refusées par les règles de saisie.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "E429": {
+        "description": "Trop de requêtes.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "Csrf": {
+        "name": "X-XSRF-TOKEN",
+        "in": "header",
+        "required": true,
+        "description": "Jeton issu du cookie CSRF ; ne pas le stocker dans Git.",
+        "schema": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
