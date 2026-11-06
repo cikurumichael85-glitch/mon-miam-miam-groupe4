@@ -1,0 +1,12 @@
+{
+  "tables_core": 15,
+  "operations_P0": 33,
+  "schemas": 26,
+  "internal_references": "resolved",
+  "path_parameters": "checked",
+  "unique_operation_ids": true,
+  "formal_OpenAPI_validator": false,
+  "database_migrations_executed": false,
+  "api_calls_executed": false,
+  "staff_claim_view_separated_from_customer_view": true
+}
