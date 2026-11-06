@@ -1,0 +1,24 @@
+name: Anomalie
+description: Un comportement incorrect reproductible
+title: "[MMM-...] bug: "
+labels: [bug]
+body:
+  - type: input
+    id: jira
+    attributes:
+      label: Tâche Jira liée
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Étapes, résultat attendu et résultat observé
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environnement et preuves
+      description: Navigateur et contexte restaurant, sans mot de passe ni donnée réelle de client.
+    validations:
+      required: true

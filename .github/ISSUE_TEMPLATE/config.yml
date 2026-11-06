@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Backlog Jira de référence
+    url: https://legroupea.atlassian.net/jira/software/projects/MMM/boards/67/backlog
+    about: Consulter la tâche fonctionnelle et sa clé MMM avant de créer une issue technique.
