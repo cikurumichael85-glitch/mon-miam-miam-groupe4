@@ -21,3 +21,6 @@ AGENTS.md
 MEMOIRE_LOCALE.md
 livrables_backend/
 livrables_frontend/
+
+# Base SQLite locale creee hors de database/ (DB_DATABASE sans extension)
+backend/mon_miam_miam
