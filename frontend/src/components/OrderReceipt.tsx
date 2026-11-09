@@ -18,7 +18,7 @@ export function OrderReceipt({
   const { notify } = useApp();
   const [snapshot, setSnapshot] = useState<{ order: Order; payment: OrderDetail['payment'] }>({
     order,
-    payment: null,
+    payment: order.payment ?? null,
   });
   function refresh() {
     void request<OrderDetail>(`/me/orders/${order.id}`)
@@ -39,7 +39,7 @@ export function OrderReceipt({
       </a>
       <p className="small-note">
         La commande reste dans Mes commandes même si vous fermez cette fenêtre. Seule la
-        vérification du prestataire peut confirmer le règlement.
+        confirmation du serveur pour les espèces ou du prestataire pour EasyPay peut valider le règlement.
       </p>
     </div>
   );

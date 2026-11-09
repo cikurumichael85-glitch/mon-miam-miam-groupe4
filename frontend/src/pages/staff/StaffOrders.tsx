@@ -62,6 +62,7 @@ function StaffOrderWindow({
             ))}
           </ul>
           <p>Total : {money(detail.data.data.total)}</p>
+          <StaffPayment restaurantId={restaurantId} detail={detail.data} refresh={detail.reload} />
           <OrderFulfillment order={detail.data.data} />
           {options.length > 0 ? (
             <ActionForm
@@ -121,7 +122,10 @@ export function StaffOrders({ restaurantId, manager }: { restaurantId: string; m
           Actualiser
         </button>
       </div>
-      <p className="small-note">Actualisation toutes les 15 secondes quand cet onglet est visible. La confirmation d’une étape reste une action volontaire.</p>
+      <p className="small-note">
+        Actualisation toutes les 15 secondes quand cet onglet est visible. La confirmation d’une
+        étape reste une action volontaire.
+      </p>
       <State
         loading={orders.loading}
         error={orders.error}
@@ -137,6 +141,7 @@ export function StaffOrders({ restaurantId, manager }: { restaurantId: string; m
           <span>
             N° {order.id} · {statusLabels[order.status]}
             <small>{order.service_mode === 'delivery' ? 'Livraison' : 'Sur place'}</small>
+            <small>{order.payment_state === 'paid' ? 'Payé' : 'Non réglé'}</small>
           </span>
           <strong>{money(order.total)}</strong>
         </button>
@@ -162,5 +167,83 @@ export function StaffOrders({ restaurantId, manager }: { restaurantId: string; m
         />
       )}
     </div>
+  );
+}
+
+function CashReceipt({
+  restaurantId,
+  order,
+  refresh,
+}: {
+  restaurantId: string;
+  order: Order;
+  refresh: () => void;
+}) {
+  return (
+    <div className="panel">
+      <h3>Encaissement en espèces · {money(order.total)}</h3>
+      <p>Confirmez uniquement après avoir reçu la totalité de cette somme.</p>
+      <ActionForm
+        fields={[
+          {
+            name: 'received',
+            label: 'Avez-vous reçu le montant total ?',
+            options: [
+              { value: '', label: 'Choisissez après réception' },
+              { value: '1', label: 'Oui, j’ai reçu le montant total en espèces' },
+            ],
+          },
+        ]}
+        submit="Confirmer les espèces reçues"
+        action={async (values) => {
+          if (values.received !== '1') {
+            throw new Error('La réception du montant total doit être confirmée.');
+          }
+          await request(
+            `/restaurants/${restaurantId}/orders/${order.id}/cash-payment/confirm`,
+            'POST',
+            {
+              amount: order.total,
+              received: true,
+            },
+          );
+          refresh();
+          return 'Paiement en espèces confirmé et ajouté aux statistiques.';
+        }}
+      />
+    </div>
+  );
+}
+
+function StaffPayment({
+  restaurantId,
+  detail,
+  refresh,
+}: {
+  restaurantId: string;
+  detail: OrderDetail;
+  refresh: () => void;
+}) {
+  const cash = detail.payment?.mode === 'cash';
+  const canReceive =
+    cash &&
+    detail.payment?.state === 'pending' &&
+    !['cancelled', 'rejected'].includes(detail.data.status);
+  return (
+    <>
+      <p>
+        Règlement : {detail.data.payment_state === 'paid' ? 'Payé' : 'Non réglé'}
+        {cash ? ' · Espèces' : ''}
+      </p>
+      {canReceive && (
+        <CashReceipt restaurantId={restaurantId} order={detail.data} refresh={refresh} />
+      )}
+      {detail.cash_receipt && (
+        <p>
+          Encaissement confirmé par {detail.cash_receipt.actor_name} le{' '}
+          {new Date(detail.cash_receipt.occurred_at).toLocaleString('fr-CD')}.
+        </p>
+      )}
+    </>
   );
 }

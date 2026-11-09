@@ -1,7 +1,7 @@
 // Prise en main : Michael ; relecture croisée du binôme B.
 import { useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
-import type { CheckoutOptions, Order, Quote } from '../domain/types';
+import type { CheckoutOptions, Order, OrderDetail, Quote } from '../domain/types';
 import { cartTotal } from '../domain/cart';
 import { money } from '../domain/money';
 import { request } from '../services/http';
@@ -22,6 +22,10 @@ function isoDate(value: string): string {
     );
   }
   return date.toISOString().replace('.000Z', '+00:00');
+}
+
+function hasOnlinePayment(options: CheckoutOptions | null): boolean {
+  return options?.payment.available === true && options.payment.networks.length > 0;
 }
 
 function ServiceFields({ service }: { service: string }) {
@@ -169,9 +173,9 @@ export function Checkout({
       signal,
     ),
   );
-  const onlinePayment =
-    options.data?.payment.available === true && options.data.payment.networks.length > 0;
+  const onlinePayment = hasOnlinePayment(options.data);
   const [service, setService] = useState('on_site');
+  const [paymentMethod, setPaymentMethod] = useState('cash');
   const [quote, setQuote] = useState<Quote | null>(null);
   const confirmationKey = useRef('');
   const task = useAction();
@@ -204,13 +208,20 @@ export function Checkout({
       return;
     }
     void task.run(async () => {
-      const result = await request<{ data: Order }>(
+      const result = await request<{ data: Order; payment?: OrderDetail['payment'] }>(
         `/restaurants/${app.cart.restaurantId}/orders`,
         'POST',
-        { quote_id: quote.id, idempotency_key: confirmationKey.current },
+        {
+          quote_id: quote.id,
+          idempotency_key: confirmationKey.current,
+          payment_method: paymentMethod,
+        },
       );
-      const payment = await checkoutAfterOrder(result.data, onlinePayment);
-      onConfirmed(result.data, payment.notice);
+      const payment = await checkoutAfterOrder(
+        result.data,
+        onlinePayment && paymentMethod === 'easypay',
+      );
+      onConfirmed({ ...result.data, payment: result.payment }, payment.notice);
       app.dispatch({ type: 'clear' });
       app.notify(`Commande n° ${result.data.id} transmise au restaurant.`);
       if (payment.url) {
@@ -239,6 +250,22 @@ export function Checkout({
             </select>
           </label>
           <ServiceFields service={service} />
+          <label className="field">
+            <span>Moyen de paiement</span>
+            <select
+              value={paymentMethod}
+              onChange={(event) => setPaymentMethod(event.target.value)}
+            >
+              <option value="cash">Espèces auprès du serveur du restaurant</option>
+              <option value="easypay" disabled={!onlinePayment}>
+                EasyPay / Mobile Money
+              </option>
+            </select>
+          </label>
+          <p className="small-note">
+            En espèces, remettez le total au serveur. Il confirmera la réception du règlement dans
+            votre commande.
+          </p>
           <Field
             name="points"
             label="Points de fidélité à utiliser"
@@ -262,7 +289,9 @@ export function Checkout({
           quote={quote}
           pending={task.pending}
           confirm={confirm}
-          onlinePayment={onlinePayment && quote.payload.total !== '0.00'}
+          onlinePayment={
+            onlinePayment && paymentMethod === 'easypay' && quote.payload.total !== '0.00'
+          }
         />
       )}
       {task.error && (

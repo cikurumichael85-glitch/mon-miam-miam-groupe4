@@ -291,9 +291,14 @@ export function PaymentActions({
   const replaceTest = replaceableTest(payment, options.data);
   const allowed = canPay(order, options.data) && (!mismatch || replaceTest);
 
+  if (payment?.mode === 'cash') {
+    return <CashStatus order={order} payment={payment} refresh={refresh} />;
+  }
+
   return (
     <div className="payment-box">
       <h3>Payer ma commande</h3>
+      <CashChoice order={order} refresh={refresh} />
       <State loading={options.loading} error={options.error} retry={options.reload} />
       {options.data && (
         <HostedCheckout
@@ -312,6 +317,73 @@ export function PaymentActions({
       ) : (
         <PaymentProgress order={order} payment={payment} allowed={allowed} refresh={refresh} />
       )}
+    </div>
+  );
+}
+
+function CashChoice({ order, refresh }: { order: Order; refresh: () => void }) {
+  const task = useAction();
+  if (
+    order.payment_state === 'paid' ||
+    order.total === '0.00' ||
+    ['cancelled', 'rejected'].includes(order.status)
+  ) {
+    return null;
+  }
+  return (
+    <div className="panel">
+      <h4>Régler en espèces</h4>
+      <p>
+        Choisissez de remettre le montant total au serveur. Le restaurant confirmera ensuite sa
+        réception.
+      </p>
+      <button
+        className="button secondary"
+        disabled={task.pending}
+        onClick={() =>
+          void task.run(async () => {
+            await request(`/me/orders/${order.id}/cash-payment`, 'POST');
+            refresh();
+          })
+        }
+      >
+        Choisir les espèces
+      </button>
+      {task.error && (
+        <p className="error" role="alert">
+          {task.error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function CashStatus({
+  order,
+  payment,
+  refresh,
+}: {
+  order: Order;
+  payment: NonNullable<PaymentRecord>;
+  refresh: () => void;
+}) {
+  const waiting = ['cancelled', 'rejected'].includes(order.status)
+    ? 'Commande clôturée. Contactez le restaurant pour toute question concernant son règlement.'
+    : 'Remettez le total au serveur du restaurant. Votre règlement reste en attente de sa confirmation.';
+  return (
+    <div className="payment-box">
+      <h3>Paiement en espèces</h3>
+      <p>
+        {payment.state === 'paid'
+          ? 'Paiement en espèces reçu et confirmé par le restaurant.'
+          : waiting}
+      </p>
+      {payment.verified_at && (
+        <p>Confirmé le {new Date(payment.verified_at).toLocaleString('fr-CD')}.</p>
+      )}
+      <button className="button secondary" onClick={refresh}>
+        Actualiser le règlement
+      </button>
     </div>
   );
 }

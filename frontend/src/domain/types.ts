@@ -85,6 +85,7 @@ export type OrderStatus =
   | 'cancelled'
   | 'rejected';
 export interface Order {
+  payment?: OrderDetail['payment'];
   id: Identifier;
   restaurant_id: Identifier;
   status: OrderStatus;
@@ -97,6 +98,7 @@ export interface Order {
   version: number;
 }
 export interface OrderDetail {
+  cash_receipt?: { actor_name: string; occurred_at: string } | null;
   data: Order;
   lines: { id: Identifier; name: string; quantity: number; unit_price: string }[];
   events: { id: Identifier; from_status: string | null; to_status: string; occurred_at: string }[];
@@ -173,6 +175,9 @@ export interface LoyaltyAccount {
   program: { restaurant_id: Identifier | null; rules: string | Record<string, unknown> };
 }
 export interface Statistics {
+  paid_orders_total: string;
+  cash_paid_orders: number;
+  cash_paid_total: string;
   orders: number;
   completed_orders: number;
   completed_total: string;

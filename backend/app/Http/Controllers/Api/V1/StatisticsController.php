@@ -52,6 +52,8 @@ final class StatisticsController extends Controller
         $query->where('created_at', '>=', $this->start($period, $timezone)->utc())->where('created_at', '<=', now());
         $completed = (clone $query)->where('status', 'completed');
         $paid = (clone $completed)->where('payment_state', 'paid');
+        $cash = (clone $query)->where('payment_state', 'paid')->whereIn('id',
+            DB::table('payments')->select('order_id')->where('mode', 'cash')->where('state', 'paid')->where('is_active', true));
 
         return response()->json(['data' => [
             'period' => $period,
@@ -60,6 +62,9 @@ final class StatisticsController extends Controller
             'completed_orders' => (clone $completed)->count(),
             'completed_total' => (string) (clone $completed)->sum('total'),
             'paid_completed_total' => (string) $paid->sum('total'),
+            'paid_orders_total' => (string) (clone $query)->where('payment_state', 'paid')->sum('total'),
+            'cash_paid_orders' => (clone $cash)->count(),
+            'cash_paid_total' => (string) $cash->sum('total'),
             'points_used' => (int) (clone $completed)->sum('points_used'),
             'points_awarded' => (int) DB::table('loyalty_entries')->whereIn('order_id', (clone $completed)->select('orders.id'))
                 ->where('kind', 'earn')->where('delta', '>', 0)->sum('delta'),
