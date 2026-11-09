@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Restaurant;
 use App\Services\ApiAccess;
+use App\Services\CashPaymentService;
 use App\Services\OrderService;
 use App\Services\QuoteService;
 use Illuminate\Http\JsonResponse;
@@ -44,12 +45,26 @@ final class OrderController extends Controller
         return response()->json(['data' => $quotes->create($restaurant, $request->user()->id, $data)], 201);
     }
 
-    public function store(Request $request, Restaurant $restaurant): JsonResponse
+    public function store(Request $request, Restaurant $restaurant, CashPaymentService $cash): JsonResponse
     {
-        $data = $request->validate(['quote_id' => ['required', 'uuid'], 'idempotency_key' => ['required', 'uuid']]);
-        $order = $this->orders->confirm($restaurant, $request->user()->id, $data['quote_id'], $data['idempotency_key']);
+        $data = $request->validate([
+            'quote_id' => ['required', 'uuid'],
+            'idempotency_key' => ['required', 'uuid'],
+            'payment_method' => ['sometimes', Rule::in(['cash', 'easypay'])],
+        ]);
+        $order = DB::transaction(function () use ($request, $restaurant, $data, $cash): Order {
+            $record = $this->orders->confirm($restaurant, $request->user()->id, $data['quote_id'], $data['idempotency_key']);
+            if (($data['payment_method'] ?? null) === 'cash' && $record->total !== '0.00') {
+                $cash->select($record, $request->user()->id);
+            }
 
-        return response()->json(['data' => $order], $order->wasRecentlyCreated ? 201 : 200);
+            return $record;
+        }, 3);
+
+        return response()->json([
+            'data' => $order,
+            'payment' => Payment::where('order_id', $order->id)->where('is_active', true)->first(['id', 'state', 'verified_at', 'mode']),
+        ], $order->wasRecentlyCreated ? 201 : 200);
     }
 
     public function mine(Request $request): JsonResponse
@@ -78,7 +93,7 @@ final class OrderController extends Controller
     {
         $this->access->staff($request->user(), $restaurant);
 
-        return $this->detail(Order::where('restaurant_id', $restaurant->id)->findOrFail($order));
+        return $this->detail(Order::where('restaurant_id', $restaurant->id)->findOrFail($order), true);
     }
 
     public function transition(Request $request, Restaurant $restaurant, int $order): JsonResponse
@@ -94,13 +109,21 @@ final class OrderController extends Controller
         return response()->json(['data' => $this->orders->transition($restaurant, $order, $request->user()->id, $data)]);
     }
 
-    private function detail(Order $order): JsonResponse
+    private function detail(Order $order, bool $staff = false): JsonResponse
     {
+        $payment = Payment::where('order_id', $order->id)->where('is_active', true)->first(['id', 'state', 'verified_at', 'mode']);
+
         return response()->json([
             'data' => $order,
             'lines' => DB::table('order_lines')->where('order_id', $order->id)->get(),
             'events' => DB::table('order_events')->where('order_id', $order->id)->orderBy('version')->get(),
-            'payment' => Payment::where('order_id', $order->id)->where('is_active', true)->first(['id', 'state', 'verified_at', 'mode']),
+            'payment' => $payment,
+            'cash_receipt' => $staff && $payment?->mode === 'cash'
+                ? DB::table('audit_events')->leftJoin('users', 'users.id', '=', 'audit_events.actor_id')
+                    ->where('action', 'payment.cash.received')->where('target', (string) $payment->id)
+                    ->where('audit_events.restaurant_id', $order->restaurant_id)
+                    ->first(['users.name as actor_name', 'audit_events.occurred_at'])
+                : null,
             'payment_attempts' => Payment::where('order_id', $order->id)->orderBy('id')->get(['id', 'mode', 'state', 'is_active', 'created_at', 'archived_at']),
         ]);
     }

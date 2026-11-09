@@ -126,6 +126,7 @@ describe('Commander maintenant', () => {
           total: '2500.00',
           version: 1,
         },
+        payment: { mode: 'cash', state: 'pending', verified_at: null },
       });
     render(<CartSheet close={vi.fn()} />);
     const context = vi.mocked(useApp).mock.results[0].value as ReturnType<typeof useApp>;
@@ -138,7 +139,10 @@ describe('Commander maintenant', () => {
     fireEvent.click(await screen.findByRole('button', { name: /Confirmer ma commande/ }));
     expect(await screen.findByText('Commande n° 3 transmise au restaurant.')).toBeInTheDocument();
     expect(context.cart.lines).toHaveLength(0);
-    expect(screen.getByRole('heading', { name: 'Payer ma commande' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Paiement en espèces' })).toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: 'Accéder au paiement sécurisé' }),
+    ).not.toBeInTheDocument();
     expect(screen.queryByText('Votre panier attend ses saveurs.')).not.toBeInTheDocument();
   });
 
@@ -171,6 +175,7 @@ describe('Commander maintenant', () => {
       .mockResolvedValueOnce({ checkout_url: url });
     const confirmed = vi.fn();
     render(<Checkout onConfirmed={confirmed} busy={vi.fn()} />);
+    fireEvent.change(screen.getByLabelText('Moyen de paiement'), { target: { value: 'easypay' } });
     fireEvent.click(screen.getByRole('button', { name: 'Vérifier le prix et continuer' }));
     fireEvent.click(
       await screen.findByRole('button', { name: /Confirmer ma commande et ouvrir EasyPay/ }),
@@ -246,6 +251,7 @@ describe('Commander maintenant', () => {
       })
       .mockRejectedValueOnce(new Error('Initialisation non confirmée par EasyPay.'));
     render(<CartSheet close={vi.fn()} />);
+    fireEvent.change(screen.getByLabelText('Moyen de paiement'), { target: { value: 'easypay' } });
     fireEvent.click(screen.getByRole('button', { name: 'Vérifier le prix et continuer' }));
     fireEvent.click(
       await screen.findByRole('button', { name: /Confirmer ma commande et ouvrir EasyPay/ }),

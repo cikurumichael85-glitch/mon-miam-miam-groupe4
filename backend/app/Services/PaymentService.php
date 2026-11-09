@@ -84,6 +84,7 @@ final class PaymentService
 
     public function verify(Payment $payment): Payment
     {
+        abort_if($payment->mode === 'cash', 409, 'Le règlement en espèces doit être confirmé par le serveur du restaurant.');
         abort_unless($payment->is_active, 409, 'Cette ancienne tentative est archivée ; aucun règlement de la commande ne sera modifié.');
         abort_unless($payment->external_reference, 409, 'Référence inconnue : rapprochement marchand nécessaire.');
         if ($payment->state === 'paid') {
@@ -147,6 +148,7 @@ final class PaymentService
 
     public function reconcile(Payment $payment, string $reference): Payment
     {
+        abort_if($payment->mode === 'cash', 409, 'Ce règlement est un paiement en espèces.');
         abort_unless($payment->is_active, 409, 'Cette tentative est archivée.');
         abort_if($payment->external_reference !== null, 409, 'Référence déjà connue : utilisez la vérification.');
         $payment->external_reference = $reference;

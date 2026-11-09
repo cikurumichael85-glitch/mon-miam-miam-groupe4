@@ -5,6 +5,7 @@
 use App\Http\Controllers\Api\V1\AccountCredentialsController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\CampaignController;
+use App\Http\Controllers\Api\V1\CashPaymentController;
 use App\Http\Controllers\Api\V1\CheckoutOptionsController;
 use App\Http\Controllers\Api\V1\ClaimController;
 use App\Http\Controllers\Api\V1\ListRestaurantsController;
@@ -93,6 +94,8 @@ Route::prefix('v1')->middleware(['web', 'throttle:api'])->group(function (): voi
         Route::post('me/orders/{order}/review', [ReviewController::class, 'store']);
         Route::post('restaurants/{restaurant}/reviews/{review}/hide', [ReviewController::class, 'hide']);
         Route::post('me/orders/{order}/payment', [PaymentController::class, 'start']);
+        Route::post('me/orders/{order}/cash-payment', [CashPaymentController::class, 'select']);
+        Route::post('restaurants/{restaurant}/orders/{order}/cash-payment/confirm', [CashPaymentController::class, 'receive']);
         Route::post('me/orders/{order}/payment/verify', [PaymentController::class, 'verify']);
         Route::post('platform/restaurants', [RestaurantAdminController::class, 'store']);
         Route::patch('platform/restaurants/{restaurant}', [RestaurantAdminController::class, 'platformUpdate']);

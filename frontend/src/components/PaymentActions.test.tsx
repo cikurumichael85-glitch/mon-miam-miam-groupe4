@@ -47,6 +47,37 @@ afterEach(() => {
 });
 
 describe('Paiement hébergé EasyPay', () => {
+  it('présente les espèces en attente sans ouvrir ni vérifier EasyPay', async () => {
+    vi.mocked(request).mockResolvedValue(options);
+    const refresh = vi.fn();
+    render(
+      <PaymentActions
+        order={order}
+        payment={{ mode: 'cash', state: 'pending', verified_at: null }}
+        refresh={refresh}
+      />,
+    );
+    expect(screen.getByText(/Votre règlement reste en attente/)).toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: 'Accéder au paiement sécurisé' }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Actualiser le règlement' }));
+    expect(refresh).toHaveBeenCalledTimes(1);
+    expect(openHostedCheckout).not.toHaveBeenCalled();
+    expect(request).not.toHaveBeenCalledWith('/me/orders/1/payment/verify', 'POST');
+  });
+
+  it('enregistre le choix espèces puis recharge la commande sans la déclarer payée', async () => {
+    vi.mocked(request)
+      .mockResolvedValueOnce(options)
+      .mockResolvedValueOnce({ data: { mode: 'cash', state: 'pending' } });
+    const refresh = vi.fn();
+    render(<PaymentActions order={order} payment={null} refresh={refresh} />);
+    fireEvent.click(await screen.findByRole('button', { name: 'Choisir les espèces' }));
+    await waitFor(() => expect(refresh).toHaveBeenCalledTimes(1));
+    expect(request).toHaveBeenCalledWith('/me/orders/1/cash-payment', 'POST');
+    expect(openHostedCheckout).not.toHaveBeenCalled();
+  });
   it.each(['Orange Money', 'M-Pesa', 'Airtel Money'])(
     'le bouton $0 ouvre EasyPay après la préparation serveur',
     async (label) => {
