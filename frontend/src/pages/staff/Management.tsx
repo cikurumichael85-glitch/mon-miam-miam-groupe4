@@ -48,6 +48,14 @@ export function StaffStatistics({
         <>
           <div className="stats-grid">
             <article>
+              <span>Montant de toutes les commandes payées</span>
+              <strong>{money(result.paid_orders_total)}</strong>
+            </article>
+            <article>
+              <span>Espèces confirmées · {result.cash_paid_orders} commande(s)</span>
+              <strong>{money(result.cash_paid_total)}</strong>
+            </article>
+            <article>
               <span>Commandes créées</span>
               <strong>{result.orders}</strong>
             </article>
@@ -68,6 +76,10 @@ export function StaffStatistics({
             <p>
               {result.points_awarded} points attribués · {result.referrals_rewarded} parrainages
               récompensés
+            </p>
+            <p className="small-note">
+              La période porte sur la création des commandes, avec leur état de règlement actuel.
+              Les espèces en attente sont exclues des montants encaissés.
             </p>
             <p className="small-note">
               Dernier calcul serveur : {new Date(result.generated_at).toLocaleString('fr-CD')}.
